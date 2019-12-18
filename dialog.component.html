@@ -1,0 +1,61 @@
+<mat-tab-group class="dialog">
+
+	<mat-tab label="Product Detail">
+		<img class="img" src="./assets/icon/{{data.image}}">
+		<h1 class="title">{{data.productName}}</h1>
+		<p class="price">${{data.price}}</p>
+		<p class="title-description align-left">{{data.description}}</p>
+		<!-- <button class="close" (click)="onNoClick()">X</button> -->
+	</mat-tab>
+	<mat-tab label="Order">
+		<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+			<div class="order-contanior">
+
+				<div class="alert">
+					You are going to order product : <strong>{{data.productName}}</strong>
+				</div>
+				<div style="color: darkred;">
+					<strong>{{warning}}</strong>
+				</div>
+				<div class="input-con">
+					<div class="h4">
+						<h4>Full Name</h4>
+						<h4>Email</h4>
+						<h4>Phone Number</h4>
+						<h4>Address</h4>
+						<h4>Payment Option</h4>
+					</div>
+					<div class="input">
+						<mat-form-field appearance="outline">
+							<input matInput name="fullname" [(ngModel)]="fullname" placeholder="Osama Binladin"
+								class="input" [ngStyle]="{'color': ngColor}">
+							<mat-hint [ngStyle]="{'color': ngColor}">{{hintfullname}}</mat-hint>
+						</mat-form-field>
+						<mat-form-field appearance="outline" ng-controller="myCtrl">
+							<input type="email" name="ngEmail" ng-change="checkEmail()" [(ngModel)]="ngEmail" matInput
+								placeholder="example@mail.com" class="input" [ngStyle]="{'color': ngColor}">
+							<mat-hint>{{hinthintemial}}</mat-hint>
+						</mat-form-field>
+						<mat-form-field appearance="outline">
+							<input type="tel" name="phone" [(ngModel)]="phone" required matInput
+								placeholder="+85510123123" class="input">
+							<mat-hint>{{hintphone}}</mat-hint>
+						</mat-form-field>
+						<mat-form-field appearance="outline">
+							<textarea matInput name="address" [(ngModel)]="address"
+								placeholder="#, st., Town, City"></textarea>
+							<mat-hint>{{hintaddress}}</mat-hint>
+						</mat-form-field>
+						<select placeholder="Select" name="paymentMethod" [(ngModel)]="paymentMethod">
+							<option value="cod">Case On Delivery</option>
+							<option value="cc">Credit Card</option>
+							<option value="pp">Pay Pal</option>
+						</select>
+						{{paymentMethod}}
+					</div>
+				</div>
+			</div>
+			<button class="order">ORDER</button>
+		</form>
+	</mat-tab>
+</mat-tab-group>
